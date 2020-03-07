@@ -1,5 +1,6 @@
 var gulp = require('gulp'); 
-var scss = require('gulp-sass'); 
+var scss = require('gulp-sass');
+var sassGlob = require('gulp-sass-glob');
 var sourcemaps = require('gulp-sourcemaps');
 var nodemon = require('gulp-nodemon');
 var browserSync = require('browser-sync');
@@ -15,7 +16,7 @@ var PATH = {
     ASSETS: { 
         FONTS: './workspace/assets/fonts' ,
         IMAGES: './workspace/assets/image' ,
-        STYLE: './workspace/assets/scss' , 
+        STYLE: './workspace/assets/scss' ,
         SCRIPT: './workspace/assets/js' ,
         LIB: './workspace/assets/lib'
     } 
@@ -46,15 +47,16 @@ gulp.task( 'scss:compile', () => {
         var options = { 
             outputStyle: "compressed"
             , indentType: "space"
-            , indentWidth: 4
-            , precision: 8 , 
-            sourceComments: true 
+            , indentWidth: 1
+            , precision: 6 , 
+            sourceComments: false 
         }; 
         
-        gulp.src( PATH.ASSETS.STYLE + '/*.scss' ) 
+        gulp.src( [PATH.ASSETS.STYLE + '/*.scss', PATH.ASSETS.STYLE + '/layouts/*.scss'])
+            .pipe(concat('style.css') ) 
+            .pipe(sassGlob())
             .pipe( sourcemaps.init() ) 
-            .pipe( scss(options) ) 
-            .pipe( sourcemaps.write() ) 
+            .pipe( scss(options) )
             .pipe( gulp.dest( DEST_PATH.ASSETS.STYLE ) ); 
         
         resolve(); 
