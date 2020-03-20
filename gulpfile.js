@@ -12,24 +12,24 @@ var del = require('del');
 
 // 소스 파일 경로 
 var PATH = { 
-    HTML: './workspace/html',
+    HTML: './public/html',
     ASSETS: { 
-        FONTS: './workspace/assets/fonts' ,
-        IMAGES: './workspace/assets/image' ,
-        STYLE: './workspace/assets/scss' ,
-        SCRIPT: './workspace/assets/js' ,
-        LIB: './workspace/assets/lib'
+        FONTS: './public/assets/fonts' ,
+        IMAGES: './public/assets/image' ,
+        STYLE: './public/assets/scss' ,
+        SCRIPT: './public/assets/js' ,
+        LIB: './public/assets/lib'
     } 
 }, 
 // 산출물 경로 
 DEST_PATH = {
     HTML: './dist',
     ASSETS: { 
-        FONTS: './dist/assets/fonts' ,
-        IMAGES: './dist/assets/image' , 
-        STYLE: './dist/assets/css' ,
-        SCRIPT: './dist/assets/js' ,
-        LIB: './dist/assets/lib'
+        FONTS: './dist/common/fonts' ,
+        IMAGES: './dist/common/image' , 
+        STYLE: './dist/common/css' ,
+        SCRIPT: './dist/common/js' ,
+        LIB: './dist/common/lib'
 
     } 
 };
