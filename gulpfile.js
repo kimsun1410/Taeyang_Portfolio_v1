@@ -1,6 +1,7 @@
 var gulp = require('gulp'); 
 var scss = require('gulp-sass');
 var sassGlob = require('gulp-sass-glob');
+var base64 = require('gulp-base64-v2');
 var sourcemaps = require('gulp-sourcemaps');
 var nodemon = require('gulp-nodemon');
 var browserSync = require('browser-sync');
@@ -54,6 +55,14 @@ gulp.task( 'scss:compile', () => {
         
         gulp.src( [PATH.ASSETS.STYLE + '/*.scss', PATH.ASSETS.STYLE + '/layouts/*.scss'])
             .pipe(concat('style.css') ) 
+            .pipe(base64({
+                baseDir: './dist/common/css',
+                extensions: ['svg', 'png', /\.jpg#datauri$/i],
+                exclude:    [/\.server\.(com|net)\/dynamic\//, '--live.jpg'],
+                maxImageSize: 8*1024, // bytes,
+                deleteAfterEncoding: false,
+                debug: true
+            }))
             .pipe(sassGlob())
             .pipe( sourcemaps.init() ) 
             .pipe( scss(options) )
